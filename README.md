@@ -2,6 +2,11 @@
 
 VedTetris is a classic Tetris game built using .NET MAUI, designed to run on multiple platforms including Windows, Android, iOS, and Mac Catalyst. Enjoy the timeless puzzle game with modern cross-platform technology!
 
+**Created and developed by [Nayvid Technology LLP](https://tatris.nayvid.com)**
+
+## About Nayvid Technology LLP
+VedTetris belongs to and is created by **Nayvid Technology LLP**, a technology company specializing in cross-platform mobile and desktop application development. This application showcases our expertise in .NET MAUI development and modern app architecture.
+
 ## Features
 - Classic Tetris gameplay
 - Responsive controls (move, rotate, drop)
@@ -24,7 +29,7 @@ VedTetris is a classic Tetris game built using .NET MAUI, designed to run on mul
    - Visual Studio 2022 or later with MAUI workload installed
 2. **Clone the repository:**
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/divyang4481/VedTetris.git
    cd VedTetris
    ```
 3. **Build and run:**
@@ -48,5 +53,14 @@ VedTetris is a classic Tetris game built using .NET MAUI, designed to run on mul
 - The level increases for every 10 lines cleared
 - Each level increases the game speed
 
+## Company Information
+- **Developer:** Nayvid Technology LLP
+- **Website:** [tatris.nayvid.com](https://tatris.nayvid.com)
+- **Repository:** [https://github.com/divyang4481/VedTetris](https://github.com/divyang4481/VedTetris)
+- **Application ID:** com.nayvid.vedtetris
+
 ## License
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
+© 2024 Nayvid Technology LLP. All rights reserved.
