@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VedTetris.SettingsPage"
+             Title="Settings"
+             BackgroundColor="#2c3e50">
+
+    <ScrollView Padding="20">
+        <StackLayout Spacing="20">
+            
+            <!-- Audio Settings -->
+            <Border BackgroundColor="#34495e" Padding="15" StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <StackLayout>
+                    <Label Text="Audio Settings" FontSize="18" FontAttributes="Bold" TextColor="White" Margin="0,0,0,10"/>
+                    
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="Sound Effects" FontSize="16" TextColor="White" VerticalOptions="Center"/>
+                        <Switch Grid.Column="1" x:Name="SoundToggle" Toggled="OnSoundToggled"/>
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="*, Auto" Margin="0,10,0,0">
+                        <Label Grid.Column="0" Text="Haptic Feedback" FontSize="16" TextColor="White" VerticalOptions="Center"/>
+                        <Switch Grid.Column="1" x:Name="HapticToggle" Toggled="OnHapticToggled"/>
+                    </Grid>
+                </StackLayout>
+            </Border>
+            
+            <!-- Game Statistics -->
+            <Border BackgroundColor="#34495e" Padding="15" StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <StackLayout>
+                    <Label Text="Game Statistics" FontSize="18" FontAttributes="Bold" TextColor="White" Margin="0,0,0,10"/>
+                    
+                    <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto" RowSpacing="5">
+                        <Label Grid.Row="0" Grid.Column="0" Text="Total Games:" FontSize="14" TextColor="#95a5a6"/>
+                        <Label Grid.Row="0" Grid.Column="1" x:Name="TotalGamesLabel" Text="0" FontSize="14" TextColor="White" HorizontalOptions="End"/>
+                        
+                        <Label Grid.Row="1" Grid.Column="0" Text="Lines Cleared:" FontSize="14" TextColor="#95a5a6"/>
+                        <Label Grid.Row="1" Grid.Column="1" x:Name="TotalLinesLabel" Text="0" FontSize="14" TextColor="White" HorizontalOptions="End"/>
+                        
+                        <Label Grid.Row="2" Grid.Column="0" Text="Highest Level:" FontSize="14" TextColor="#95a5a6"/>
+                        <Label Grid.Row="2" Grid.Column="1" x:Name="HighestLevelLabel" Text="1" FontSize="14" TextColor="White" HorizontalOptions="End"/>
+                        
+                        <Label Grid.Row="3" Grid.Column="0" Text="Total Tetrises:" FontSize="14" TextColor="#95a5a6"/>
+                        <Label Grid.Row="3" Grid.Column="1" x:Name="TotalTetrisLabel" Text="0" FontSize="14" TextColor="White" HorizontalOptions="End"/>
+                        
+                        <Label Grid.Row="4" Grid.Column="0" Text="Play Time:" FontSize="14" TextColor="#95a5a6"/>
+                        <Label Grid.Row="4" Grid.Column="1" x:Name="PlayTimeLabel" Text="00:00:00" FontSize="14" TextColor="White" HorizontalOptions="End"/>
+                    </Grid>
+                    
+                    <Button Text="Reset Statistics" Clicked="OnResetStatsClicked" BackgroundColor="#e74c3c" TextColor="White" CornerRadius="5" Margin="0,15,0,0"/>
+                </StackLayout>
+            </Border>
+            
+            <!-- Controls Help -->
+            <Border BackgroundColor="#34495e" Padding="15" StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <StackLayout>
+                    <Label Text="Controls" FontSize="18" FontAttributes="Bold" TextColor="White" Margin="0,0,0,10"/>
+                    
+                    <Label Text="- Tap buttons or use swipe gestures" FontSize="14" TextColor="White"/>
+                    <Label Text="- Swipe left/right: Move piece" FontSize="14" TextColor="#95a5a6"/>
+                    <Label Text="- Swipe up: Rotate piece" FontSize="14" TextColor="#95a5a6"/>
+                    <Label Text="- Swipe down: Drop piece" FontSize="14" TextColor="#95a5a6"/>
+                    <Label Text="- Hold button: Save piece for later" FontSize="14" TextColor="#95a5a6"/>
+                    <Label Text="- H key: Hold (on desktop)" FontSize="14" TextColor="#95a5a6"/>
+                </StackLayout>
+            </Border>
+            
+            <!-- About -->
+            <Border BackgroundColor="#34495e" Padding="15" StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <StackLayout>
+                    <Label Text="About VedTetris" FontSize="18" FontAttributes="Bold" TextColor="White" Margin="0,0,0,10"/>
+                    
+                    <Label Text="Version: 1.0.0" FontSize="14" TextColor="#95a5a6"/>
+                    <Label Text="Built with .NET MAUI" FontSize="14" TextColor="#95a5a6"/>
+                    <Label Text="Cross-platform Tetris game" FontSize="14" TextColor="#95a5a6"/>
+                </StackLayout>
+            </Border>
+            
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

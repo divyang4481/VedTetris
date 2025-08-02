@@ -3,30 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Maui.Graphics;
 
 namespace VedTetris
 {
     /// <summary>
     /// Represents a single Tetris piece (Tetromino).
     /// </summary>
-    public class Tetromino
+    public class Tetromino(int id, Point position, int[,] shape, Color color)
     {
-        public int Id { get; }
-        public Point Position { get; set; }
-        public int[,] Shape { get; private set; }
-        public Color Color { get; }
-
-        public Tetromino(int id, Point position, int[,] shape, Color color)
-        {
-            Id = id;
-            Position = position;
-            Shape = shape;
-            Color = color;
-        }
+        public int Id { get; } = id;
+        public Point Position { get; set; } = position;
+        public int[,] Shape { get; private set; } = shape;
+        public Color Color { get; } = color;
 
         public void Move(int dx, int dy)
         {
-            Position = new Point(Position.X + dx, Position.Y + dy);
+            Position = new(Position.X + dx, Position.Y + dy);
         }
 
         public void Rotate()
@@ -53,7 +46,7 @@ namespace VedTetris
                 {
                     if (Shape[y, x] != 0)
                     {
-                        yield return new Point(Position.X + x, Position.Y + y);
+                        yield return new(Position.X + x, Position.Y + y);
                     }
                 }
             }
@@ -61,7 +54,7 @@ namespace VedTetris
 
         public Tetromino Clone()
         {
-            return new Tetromino(Id, new Point(Position.X, Position.Y), (int[,])Shape.Clone(), Color);
+            return new(Id, new(Position.X, Position.Y), (int[,])Shape.Clone(), Color);
         }
     }
 }
