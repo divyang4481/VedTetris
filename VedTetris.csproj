@@ -15,7 +15,7 @@
 		<ApplicationTitle>VedTetris</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.vedtetris</ApplicationId>
+		<ApplicationId>com.nayvid.vedtetris</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
