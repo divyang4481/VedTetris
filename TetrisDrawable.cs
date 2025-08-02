@@ -32,6 +32,26 @@ namespace VedTetris
             canvas.StrokeSize = 2;
             canvas.DrawRectangle(offsetX, offsetY, boardWidthPixels, boardHeightPixels);
 
+            // Draw ghost piece (shadow of where the current piece will land)
+            if (!Game.IsGameOver && !Game.IsPaused)
+            {
+                var ghost = Game.GetGhostPiece();
+                if (ghost != null)
+                {
+                    // Draw with transparency
+                    Color ghostColor = ghost.Color.WithAlpha(0.3f);
+                    canvas.FillColor = ghostColor;
+                    
+                    foreach (var block in ghost.GetWorldPositions())
+                    {
+                        canvas.FillRectangle(
+                            offsetX + (float)block.X * blockSize, 
+                            offsetY + (float)block.Y * blockSize, 
+                            blockSize, 
+                            blockSize);
+                    }
+                }
+            }
 
             // Draw the landed blocks
             for (int y = 0; y < Game.BoardHeight; y++)

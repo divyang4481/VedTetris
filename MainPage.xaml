@@ -3,20 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VedTetris.MainPage">
 
-    <Grid RowDefinitions="*, Auto, Auto" BackgroundColor="#2c3e50">
+    <Grid RowDefinitions="Auto, *, Auto, Auto" BackgroundColor="#2c3e50">
+        
+        <!-- Top bar with score, level, and pause button -->
+        <Grid Grid.Row="0" ColumnDefinitions="*, Auto" Padding="10" BackgroundColor="#34495e">
+            <StackLayout Grid.Column="0" Orientation="Horizontal" Spacing="15">
+                <StackLayout>
+                    <Label Text="SCORE" FontSize="14" TextColor="White" FontAttributes="Bold"/>
+                    <Label x:Name="ScoreLabel" Text="0" FontSize="16" TextColor="#e74c3c" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="LEVEL" FontSize="14" TextColor="White" FontAttributes="Bold"/>
+                    <Label x:Name="LevelLabel" Text="1" FontSize="16" TextColor="#2ecc71" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="LINES" FontSize="14" TextColor="White" FontAttributes="Bold"/>
+                    <Label x:Name="LinesLabel" Text="0" FontSize="16" TextColor="#3498db" FontAttributes="Bold"/>
+                </StackLayout>
+            </StackLayout>
+            <Button 
+                Grid.Column="1"
+                x:Name="PauseButton" 
+                Text="⏸️ Pause" 
+                Clicked="PauseButton_Clicked" 
+                BackgroundColor="#e67e22"
+                TextColor="White"
+                CornerRadius="10"/>
+        </Grid>
 
-        <!-- This is the canvas where the game board and pieces will be drawn. -->
-        <GraphicsView x:Name="GameCanvas" Grid.Row="0" Margin="10"/>
+        <!-- Main game area and preview panel -->
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
+            <!-- Main game board -->
+            <GraphicsView x:Name="GameCanvas" Grid.Column="0" Margin="10"/>
+            
+            <!-- Right side panel with next piece and high score -->
+            <StackLayout Grid.Column="1" Margin="0,10,10,10" WidthRequest="100">
+                <!-- Next piece preview -->
+                <Frame BackgroundColor="#34495e" Padding="10" CornerRadius="10" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="NEXT" FontSize="16" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <GraphicsView x:Name="NextPieceView" HeightRequest="80"/>
+                    </StackLayout>
+                </Frame>
+                
+                <!-- High Score -->
+                <Frame BackgroundColor="#34495e" Padding="10" Margin="0,10,0,0" CornerRadius="10" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="HI-SCORE" FontSize="16" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label x:Name="HighScoreLabel" Text="0" FontSize="16" TextColor="#f1c40f" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
 
         <!-- This grid holds the main control buttons for the game. -->
-        <Grid Grid.Row="1" ColumnDefinitions="*,*,*" Padding="10" ColumnSpacing="10">
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,*" Padding="10" ColumnSpacing="10">
             <Button Text="&#x2190; Left" Grid.Column="0" Clicked="MoveLeft_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#3498db" TextColor="White" CornerRadius="10"/>
             <Button Text="Rotate &#x21BB;" Grid.Column="1" Clicked="Rotate_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#e67e22" TextColor="White" CornerRadius="10"/>
             <Button Text="Right &#x2192;" Grid.Column="2" Clicked="MoveRight_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#3498db" TextColor="White" CornerRadius="10"/>
         </Grid>
 
         <!-- This button allows the player to instantly drop the piece. -->
-        <Button Text="Drop &#x2193;" Grid.Row="2" Clicked="Drop_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#9b59b6" TextColor="White" Margin="10,0,10,10" CornerRadius="10"/>
+        <Button Text="Drop &#x2193;" Grid.Row="3" Clicked="Drop_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#9b59b6" TextColor="White" Margin="10,0,10,10" CornerRadius="10"/>
 
     </Grid>
 

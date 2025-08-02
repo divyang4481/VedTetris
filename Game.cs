@@ -15,8 +15,15 @@ namespace VedTetris
         public readonly int BoardHeight = 20;
         public int[,] Board { get; private set; }
         public Tetromino CurrentTetromino { get; private set; }
+        public Tetromino NextTetromino { get; private set; }
         public int Score { get; private set; }
+        public int LinesCleared { get; private set; }
+        public int Level { get; private set; } = 1;
         public bool IsGameOver { get; private set; }
+        public bool IsPaused { get; private set; }
+        
+        // Calculate current game speed based on level
+        public int GetGameSpeed() => Math.Max(100, 500 - ((Level - 1) * 40));
 
         private readonly Random _random = new Random();
         private readonly List<Tetromino> _tetrominoes;
@@ -40,14 +47,24 @@ namespace VedTetris
         {
             Board = new int[BoardWidth, BoardHeight];
             Score = 0;
+            LinesCleared = 0;
+            Level = 1;
             IsGameOver = false;
+            IsPaused = false;
+            NextTetromino = GetRandomTetromino();
             SpawnNewTetromino();
+        }
+
+        private Tetromino GetRandomTetromino()
+        {
+            return _tetrominoes[_random.Next(_tetrominoes.Count)].Clone();
         }
 
         private void SpawnNewTetromino()
         {
-            CurrentTetromino = _tetrominoes[_random.Next(_tetrominoes.Count)].Clone();
+            CurrentTetromino = NextTetromino;
             CurrentTetromino.Position = new Point(BoardWidth / 2 - 1, 0);
+            NextTetromino = GetRandomTetromino();
 
             if (CheckCollision())
             {
@@ -57,7 +74,7 @@ namespace VedTetris
 
         public void GameTick()
         {
-            if (IsGameOver) return;
+            if (IsGameOver || IsPaused) return;
 
             CurrentTetromino.Move(0, 1);
             if (CheckCollision())
@@ -69,8 +86,15 @@ namespace VedTetris
             }
         }
 
+        public void TogglePause()
+        {
+            IsPaused = !IsPaused;
+        }
+
         public void MoveLeft()
         {
+            if (IsGameOver || IsPaused) return;
+            
             CurrentTetromino.Move(-1, 0);
             if (CheckCollision())
             {
@@ -80,6 +104,8 @@ namespace VedTetris
 
         public void MoveRight()
         {
+            if (IsGameOver || IsPaused) return;
+            
             CurrentTetromino.Move(1, 0);
             if (CheckCollision())
             {
@@ -89,9 +115,23 @@ namespace VedTetris
 
         public void Rotate()
         {
+            if (IsGameOver || IsPaused) return;
+            
             CurrentTetromino.Rotate();
             if (CheckCollision())
             {
+                // Try to shift if blocked by walls
+                CurrentTetromino.Move(-1, 0);
+                if (!CheckCollision())
+                    return;
+                
+                CurrentTetromino.Move(2, 0);
+                if (!CheckCollision())
+                    return;
+                
+                CurrentTetromino.Move(-1, 0);
+                
+                // Rotate back if still colliding
                 CurrentTetromino.Rotate(); // Rotate back
                 CurrentTetromino.Rotate();
                 CurrentTetromino.Rotate();
@@ -100,6 +140,8 @@ namespace VedTetris
 
         public void Drop()
         {
+            if (IsGameOver || IsPaused) return;
+            
             while (!CheckCollision())
             {
                 CurrentTetromino.Move(0, 1);
@@ -107,10 +149,34 @@ namespace VedTetris
             CurrentTetromino.Move(0, -1);
             GameTick();
         }
+        
+        public Tetromino GetGhostPiece()
+        {
+            if (CurrentTetromino == null || IsGameOver || IsPaused) 
+                return null;
+            
+            Tetromino ghost = CurrentTetromino.Clone();
+            
+            // Move ghost down until it collides
+            while (true)
+            {
+                ghost.Move(0, 1);
+                if (CheckCollisionForPiece(ghost))
+                {
+                    ghost.Move(0, -1);
+                    return ghost;
+                }
+            }
+        }
 
         private bool CheckCollision()
         {
-            foreach (var block in CurrentTetromino.GetWorldPositions())
+            return CheckCollisionForPiece(CurrentTetromino);
+        }
+
+        private bool CheckCollisionForPiece(Tetromino piece)
+        {
+            foreach (var block in piece.GetWorldPositions())
             {
                 int x = (int)block.X;
                 int y = (int)block.Y;
@@ -182,7 +248,27 @@ namespace VedTetris
                     y++; // Re-check the same line
                 }
             }
-            Score += linesCleared * linesCleared * 100; // Simple scoring
+
+            if (linesCleared > 0)
+            {
+                // Update total lines and level
+                LinesCleared += linesCleared;
+                Level = (LinesCleared / 10) + 1;
+                
+                // Award points (more points for more lines cleared at once)
+                // Use traditional Tetris scoring: 100, 300, 500, 800 for 1-4 lines
+                int points = 0;
+                switch (linesCleared)
+                {
+                    case 1: points = 100; break;
+                    case 2: points = 300; break;
+                    case 3: points = 500; break;
+                    case 4: points = 800; break; // Tetris!
+                }
+                
+                // Multiply by level for increasing difficulty rewards
+                Score += points * Level;
+            }
         }
 
         public Color GetColorForBlock(int id)
@@ -190,5 +276,4 @@ namespace VedTetris
             return _tetrominoes.Find(t => t.Id == id)?.Color ?? Colors.Black;
         }
     }
-
 }
