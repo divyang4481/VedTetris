@@ -104,14 +104,34 @@
 
         <!-- Control buttons grid -->
         <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*" Padding="10" ColumnSpacing="10">
-            <Button Text="⬅️ Left" Grid.Column="0" Clicked="MoveLeft_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#3498db" TextColor="White" CornerRadius="10"/>
-            <Button Text="🔄 Rotate" Grid.Column="1" Clicked="Rotate_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#e67e22" TextColor="White" CornerRadius="10"/>
-            <Button Text="Right ➡️" Grid.Column="2" Clicked="MoveRight_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#3498db" TextColor="White" CornerRadius="10"/>
-            <Button Text="📦 Hold" Grid.Column="3" Clicked="Hold_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#9b59b6" TextColor="White" CornerRadius="10"/>
+            <Button Text="←" Grid.Column="0" Clicked="MoveLeft_Clicked" FontSize="Large" FontAttributes="Bold" BackgroundColor="#3498db" TextColor="White" CornerRadius="10" Padding="10,0">
+                <Button.Shadow>
+                    <Shadow Brush="Black" Offset="5,5" Radius="10" Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
+            <Button Text="↻" Grid.Column="1" Clicked="Rotate_Clicked" FontSize="Large" FontAttributes="Bold" BackgroundColor="#e67e22" TextColor="White" CornerRadius="10" Padding="10,0">
+                <Button.Shadow>
+                    <Shadow Brush="Black" Offset="5,5" Radius="10" Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
+            <Button Text="→" Grid.Column="2" Clicked="MoveRight_Clicked" FontSize="Large" FontAttributes="Bold" BackgroundColor="#3498db" TextColor="White" CornerRadius="10" Padding="10,0">
+                <Button.Shadow>
+                    <Shadow Brush="Black" Offset="5,5" Radius="10" Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
+            <Button Text="H" Grid.Column="3" Clicked="Hold_Clicked" FontSize="Large" FontAttributes="Bold" BackgroundColor="#9b59b6" TextColor="White" CornerRadius="10" Padding="10,0">
+                <Button.Shadow>
+                    <Shadow Brush="Black" Offset="5,5" Radius="10" Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
         </Grid>
 
         <!-- Drop button -->
-        <Button Text="⬇️ Drop" Grid.Row="3" Clicked="Drop_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#e74c3c" TextColor="White" Margin="10,0,10,10" CornerRadius="10"/>
+        <Button Text="↓" Grid.Row="3" Clicked="Drop_Clicked" FontSize="Large" FontAttributes="Bold" BackgroundColor="#e74c3c" TextColor="White" Margin="10,0,10,10" CornerRadius="10" Padding="10,0">
+            <Button.Shadow>
+                <Shadow Brush="Black" Offset="5,5" Radius="10" Opacity="0.3"/>
+            </Button.Shadow>
+        </Button>
 
     </Grid>
 
