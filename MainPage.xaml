@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VedTetris.MainPage">
+
+    <Grid RowDefinitions="*, Auto, Auto" BackgroundColor="#2c3e50">
+
+        <!-- This is the canvas where the game board and pieces will be drawn. -->
+        <GraphicsView x:Name="GameCanvas" Grid.Row="0" Margin="10"/>
+
+        <!-- This grid holds the main control buttons for the game. -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*" Padding="10" ColumnSpacing="10">
+            <Button Text="&#x2190; Left" Grid.Column="0" Clicked="MoveLeft_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#3498db" TextColor="White" CornerRadius="10"/>
+            <Button Text="Rotate &#x21BB;" Grid.Column="1" Clicked="Rotate_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#e67e22" TextColor="White" CornerRadius="10"/>
+            <Button Text="Right &#x2192;" Grid.Column="2" Clicked="MoveRight_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#3498db" TextColor="White" CornerRadius="10"/>
+        </Grid>
+
+        <!-- This button allows the player to instantly drop the piece. -->
+        <Button Text="Drop &#x2193;" Grid.Row="2" Clicked="Drop_Clicked" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#9b59b6" TextColor="White" Margin="10,0,10,10" CornerRadius="10"/>
+
+    </Grid>
+
+</ContentPage>
