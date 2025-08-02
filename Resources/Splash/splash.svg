@@ -1,22 +1,16 @@
 <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-  <!-- Professional gradients and effects -->
   <defs>
-    <!-- Main background gradient -->
     <radialGradient id="bgGradient" cx="50%" cy="30%" r="80%">
       <stop offset="0%" style="stop-color:#0a0a1a;stop-opacity:1" />
       <stop offset="30%" style="stop-color:#16213e;stop-opacity:1" />
       <stop offset="60%" style="stop-color:#1a1a2e;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#0f0f23;stop-opacity:1" />
     </radialGradient>
-    
-    <!-- Nayvid brand gradient (based on actual logo colors) -->
     <linearGradient id="nayvdGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#513ee9;stop-opacity:1" />
       <stop offset="50%" style="stop-color:#7c4dff;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#513ee9;stop-opacity:1" />
     </linearGradient>
-    
-    <!-- VedTetris title gradient -->
     <linearGradient id="tetrisGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
       <stop offset="25%" style="stop-color:#5f27cd;stop-opacity:1" />
@@ -24,8 +18,6 @@
       <stop offset="75%" style="stop-color:#00d4ff;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#5f27cd;stop-opacity:1" />
     </linearGradient>
-    
-    <!-- Enhanced neon glow filter -->
     <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
       <feMerge> 
@@ -33,37 +25,18 @@
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
-    <!-- Intense glow for logo -->
-    <filter id="logoGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-      <feMerge> 
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <filter id="glassEffect">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+        <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75" specularExponent="20" lighting-color="#white" result="specOut">
+            <fePointLight x="-5000" y="-10000" z="20000"/>
+        </feSpecularLighting>
+        <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"/>
+        <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint"/>
     </filter>
-    
-    <!-- Company brand glow -->
-    <filter id="brandGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge> 
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <!-- Animated gradient for scanning -->
-    <linearGradient id="scanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#513ee9;stop-opacity:0" />
-      <stop offset="50%" style="stop-color:#513ee9;stop-opacity:0.8" />
-      <stop offset="100%" style="stop-color:#513ee9;stop-opacity:0" />
-    </linearGradient>
   </defs>
   
-  <!-- Background -->
   <rect width="400" height="400" fill="url(#bgGradient)"/>
   
-  <!-- Animated tech grid background -->
   <g opacity="0.1">
     <defs>
       <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -75,135 +48,49 @@
     </rect>
   </g>
   
-  <!-- Company branding section (top) with actual logo -->
   <g transform="translate(200, 60)" opacity="0">
-    <!-- Extended duration: Hold for at least 2 seconds -->
     <animate attributeName="opacity" values="0;0;1;1;1;1" dur="8s" fill="freeze"/>
-    
-    <!-- Nayvid actual logo -->
-    <g transform="translate(-68, -11.5)" filter="url(#brandGlow)" opacity="0">
+    <g transform="translate(-68, -11.5)" filter="url(#neonGlow)" opacity="0">
       <animate attributeName="opacity" values="0;0;1;1;1;1" dur="8s" fill="freeze"/>
       <animateTransform attributeName="transform" type="scale" values="0.8;0.8;1.2;1;1;1" dur="2s" begin="1s" fill="freeze"/>
-      
-      <!-- Logo background with rounded corners -->
       <rect x="0" y="0" width="136" height="23" fill="url(#nayvdGradient)" rx="4">
         <animate attributeName="fill" values="#513ee9;#7c4dff;#513ee9" dur="6s" repeatCount="indefinite" begin="2s"/>
       </rect>
-      
-      <!-- Logo text -->
-      <text x="68" y="16" text-anchor="middle" 
-            font-family="Arial, Helvetica, sans-serif" 
-            font-size="14" 
-            font-weight="bold" 
-            fill="white" 
-            letter-spacing="2px">NAYVID</text>
+      <text x="68" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="white" letter-spacing="2px">NAYVID</text>
     </g>
-    
-    <!-- Company tagline with AI & Innovation focus -->
-    <text x="0" y="35" text-anchor="middle" 
-          font-family="Arial, Helvetica, sans-serif" 
-          font-size="11" 
-          font-weight="300"
-          fill="#9896f0" 
-          opacity="0"
-          letter-spacing="1px">
+    <text x="0" y="35" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="300" fill="#9896f0" opacity="0" letter-spacing="1px">
       Engineering Tomorrow with AI &amp; Innovation
       <animate attributeName="opacity" values="0;0;0;1;1;1" dur="8s" fill="freeze"/>
     </text>
-    
-    <!-- Decorative line under company section -->
-    <line x1="-80" y1="25" x2="80" y2="25" stroke="url(#nayvdGradient)" stroke-width="1" opacity="0">
-      <animate attributeName="opacity" values="0;0;0;1;1;1" dur="8s" fill="freeze"/>
-      <animate attributeName="stroke-dasharray" values="0,160; 160,0" dur="1s" begin="3s" fill="freeze"/>
-    </line>
   </g>
   
-  <!-- Central Tetris logo with enhanced animation -->
-  <g transform="translate(200, 170)">
-    <!-- T-piece (main logo piece) with morphing animation -->
-    <g filter="url(#logoGlow)" opacity="0">
-      <animate attributeName="opacity" values="0;0;0;1;1;1" dur="8s" begin="1s" fill="freeze"/>
-      <animateTransform attributeName="transform" type="scale" values="0;0;0;1.2;1;1" dur="1s" begin="3s" fill="freeze"/>
-      
-      <rect x="-60" y="-15" width="30" height="30" fill="#00d4ff" rx="4">
-        <animate attributeName="fill" values="#00d4ff;#5f27cd;#ff3742;#00d4ff" dur="6s" repeatCount="indefinite" begin="4s"/>
-        <animate attributeName="y" values="-15;-18;-15" dur="2s" repeatCount="indefinite" begin="5s"/>
-      </rect>
-      <rect x="-30" y="-15" width="30" height="30" fill="#00d4ff" rx="4">
-        <animate attributeName="fill" values="#00d4ff;#5f27cd;#ff3742;#00d4ff" dur="6s" repeatCount="indefinite" begin="4s"/>
-        <animate attributeName="y" values="-15;-18;-15" dur="2s" repeatCount="indefinite" begin="5.2s"/>
-      </rect>
-      <rect x="0" y="-15" width="30" height="30" fill="#00d4ff" rx="4">
-        <animate attributeName="fill" values="#00d4ff;#5f27cd;#ff3742;#00d4ff" dur="6s" repeatCount="indefinite" begin="4s"/>
-        <animate attributeName="y" values="-15;-18;-15" dur="2s" repeatCount="indefinite" begin="5.4s"/>
-      </rect>
-      <rect x="-30" y="15" width="30" height="30" fill="#00d4ff" rx="4">
-        <animate attributeName="fill" values="#00d4ff;#5f27cd;#ff3742;#00d4ff" dur="6s" repeatCount="indefinite" begin="4s"/>
-        <animate attributeName="y" values="15;12;15" dur="2s" repeatCount="indefinite" begin="5.6s"/>
-      </rect>
+  <g transform="translate(140, 120)" filter="url(#glassEffect)">
+    <g opacity="0">
+      <animateTransform attributeName="transform" type="translate" from="0 -150" to="0 0" dur="1s" begin="1s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur="0.1s" begin="1s" fill="freeze"/>
+      <rect x="0" y="0" width="40" height="40" fill="#00d4ff"/>
+      <rect x="40" y="0" width="40" height="40" fill="#00d4ff"/>
+      <rect x="80" y="0" width="40" height="40" fill="#00d4ff"/>
+      <rect x="40" y="40" width="40" height="40" fill="#00d4ff"/>
     </g>
-    
-    <!-- L-piece (right side) with sliding animation -->
-    <g transform="translate(80, 10)" filter="url(#neonGlow)" opacity="0">
-      <animate attributeName="opacity" values="0;0;0;1;1;1" dur="8s" begin="2s" fill="freeze"/>
-      <animateTransform attributeName="transform" type="translate" values="120,10; 120,10; 80,10" dur="1s" begin="4s" fill="freeze"/>
-      
-      <rect x="-15" y="-15" width="30" height="30" fill="#ff3742" rx="4">
-        <animate attributeName="fill" values="#ff3742;#00d4ff;#5f27cd;#ff3742" dur="5s" repeatCount="indefinite" begin="5s"/>
-      </rect>
-      <rect x="-15" y="15" width="30" height="30" fill="#ff3742" rx="4">
-        <animate attributeName="fill" values="#ff3742;#00d4ff;#5f27cd;#ff3742" dur="5s" repeatCount="indefinite" begin="5s"/>
-      </rect>
-      <rect x="-15" y="45" width="30" height="30" fill="#ff3742" rx="4">
-        <animate attributeName="fill" values="#ff3742;#00d4ff;#5f27cd;#ff3742" dur="5s" repeatCount="indefinite" begin="5s"/>
-      </rect>
-      <rect x="15" y="45" width="30" height="30" fill="#ff3742" rx="4">
-        <animate attributeName="fill" values="#ff3742;#00d4ff;#5f27cd;#ff3742" dur="5s" repeatCount="indefinite" begin="5s"/>
-      </rect>
+    <g opacity="0">
+      <animateTransform attributeName="transform" type="translate" from="0 -150" to="0 0" dur="1s" begin="1.5s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur="0.1s" begin="1.5s" fill="freeze"/>
+      <rect x="0" y="80" width="40" height="40" fill="#5f27cd"/>
+      <rect x="40" y="80" width="40" height="40" fill="#5f27cd"/>
+      <rect x="80" y="80" width="40" height="40" fill="#5f27cd"/>
+      <rect x="120" y="80" width="40" height="40" fill="#5f27cd"/>
     </g>
-    
-    <!-- I-piece (left side) with dropping animation -->
-    <g transform="translate(-80, 20)" filter="url(#neonGlow)" opacity="0">
-      <animate attributeName="opacity" values="0;0;0;1;1;1" dur="8s" begin="2.5s" fill="freeze"/>
-      <animateTransform attributeName="transform" type="translate" values="-80,-20; -80,-20; -80,20" dur="0.8s" begin="4.5s" fill="freeze"/>
-      
-      <rect x="-15" y="-45" width="30" height="30" fill="#5f27cd" rx="4">
-        <animate attributeName="fill" values="#5f27cd;#ff3742;#00d4ff;#5f27cd" dur="4s" repeatCount="indefinite" begin="5.5s"/>
-      </rect>
-      <rect x="-15" y="-15" width="30" height="30" fill="#5f27cd" rx="4">
-        <animate attributeName="fill" values="#5f27cd;#ff3742;#00d4ff;#5f27cd" dur="4s" repeatCount="indefinite" begin="5.5s"/>
-      </rect>
-      <rect x="-15" y="15" width="30" height="30" fill="#5f27cd" rx="4">
-        <animate attributeName="fill" values="#5f27cd;#ff3742;#00d4ff;#5f27cd" dur="4s" repeatCount="indefinite" begin="5.5s"/>
-      </rect>
-      <rect x="-15" y="45" width="30" height="30" fill="#5f27cd" rx="4">
-        <animate attributeName="fill" values="#5f27cd;#ff3742;#00d4ff;#5f27cd" dur="4s" repeatCount="indefinite" begin="5.5s"/>
-      </rect>
+    <g opacity="0">
+      <animateTransform attributeName="transform" type="translate" from="0 -150" to="0 0" dur="1s" begin="2s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur="0.1s" begin="2s" fill="freeze"/>
+      <rect x="0" y="120" width="40" height="40" fill="#ff3742"/>
+      <rect x="0" y="160" width="40" height="40" fill="#ff3742"/>
+      <rect x="40" y="160" width="40" height="40" fill="#ff3742"/>
+      <rect x="80" y="160" width="40" height="40" fill="#ff3742"/>
     </g>
   </g>
   
-  <!-- Enhanced floating particles with varied animations -->
-  <g opacity="0.8">
-    <circle cx="80" cy="80" r="2" fill="#513ee9">
-      <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" begin="3s"/>
-      <animateTransform attributeName="transform" type="scale" values="0.5;2;0.5" dur="3s" repeatCount="indefinite" begin="3s"/>
-      <animateTransform attributeName="transform" type="translate" values="0,0; 15,-10; 0,0" dur="4s" repeatCount="indefinite" begin="3s" additive="sum"/>
-    </circle>
-    <circle cx="320" cy="100" r="1.5" fill="#00d4ff">
-      <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite" begin="3.8s"/>
-      <animateTransform attributeName="transform" type="scale" values="0.5;1.8;0.5" dur="2.5s" repeatCount="indefinite" begin="3.8s"/>
-    </circle>
-    <circle cx="60" cy="320" r="1" fill="#ff3742">
-      <animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite" begin="4.5s"/>
-      <animateTransform attributeName="transform" type="scale" values="0.5;2.2;0.5" dur="4s" repeatCount="indefinite" begin="4.5s"/>
-    </circle>
-    <circle cx="340" cy="280" r="1.8" fill="#5f27cd">
-      <animate attributeName="opacity" values="0;1;0" dur="3.2s" repeatCount="indefinite" begin="2.3s"/>
-      <animateTransform attributeName="transform" type="scale" values="0.5;1.6;0.5" dur="3.2s" repeatCount="indefinite" begin="2.3s"/>
-    </circle>
-  </g>
-  
-  <!-- Game title with sophisticated animation -->
   <text x="200" y="300" text-anchor="middle" 
         font-family="Arial, Helvetica, sans-serif" 
         font-size="44" 
@@ -213,10 +100,8 @@
         opacity="0">
     VedTetris
     <animate attributeName="opacity" values="0;0;0;1;1;1" dur="8s" begin="3.5s" fill="freeze"/>
-    <animateTransform attributeName="transform" type="scale" values="0.8;0.8;0.8;1.1;1;1" dur="1s" begin="5s" fill="freeze"/>
   </text>
   
-  <!-- Enhanced subtitle with typing effect -->
   <text x="200" y="328" text-anchor="middle" 
         font-family="Arial, Helvetica, sans-serif" 
         font-size="13" 
@@ -227,86 +112,4 @@
     Classic • Evolved • Perfected
     <animate attributeName="opacity" values="0;0;0;0;1;1" dur="8s" begin="4s" fill="freeze"/>
   </text>
-  
-  <!-- Professional loading animation with Nayvid colors -->
-  <g transform="translate(200, 365)" opacity="0">
-    <animate attributeName="opacity" values="0;0;0;0;1;1" dur="8s" begin="5s" fill="freeze"/>
-    
-    <circle cx="-30" cy="0" r="6" fill="#513ee9">
-      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite" begin="6s"/>
-      <animate attributeName="fill" values="#513ee9;#00d4ff;#ff3742;#513ee9" dur="1.8s" repeatCount="indefinite" begin="6s"/>
-      <animateTransform attributeName="transform" type="scale" values="0.8;1.2;0.8" dur="1.8s" repeatCount="indefinite" begin="6s"/>
-    </circle>
-    <circle cx="0" cy="0" r="6" fill="#00d4ff">
-      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite" begin="6.6s"/>
-      <animate attributeName="fill" values="#00d4ff;#ff3742;#513ee9;#00d4ff" dur="1.8s" repeatCount="indefinite" begin="6.6s"/>
-      <animateTransform attributeName="transform" type="scale" values="0.8;1.2;0.8" dur="1.8s" repeatCount="indefinite" begin="6.6s"/>
-    </circle>
-    <circle cx="30" cy="0" r="6" fill="#ff3742">
-      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite" begin="7.2s"/>
-      <animate attributeName="fill" values="#ff3742;#513ee9;#00d4ff;#ff3742" dur="1.8s" repeatCount="indefinite" begin="7.2s"/>
-      <animateTransform attributeName="transform" type="scale" values="0.8;1.2;0.8" dur="1.8s" repeatCount="indefinite" begin="7.2s"/>
-    </circle>
-  </g>
-  
-  <!-- Advanced scanning effect with Nayvid branding -->
-  <rect x="0" y="-8" width="400" height="6" fill="url(#scanGradient)" opacity="0">
-    <animateTransform attributeName="transform" type="translate" values="0,0; 0,416" dur="4s" repeatCount="indefinite" begin="6s"/>
-    <animate attributeName="opacity" values="0;0.8;0" dur="4s" repeatCount="indefinite" begin="6s"/>
-  </rect>
-  
-  <!-- Sophisticated corner frame elements -->
-  <g stroke="#513ee9" stroke-width="2" fill="none" opacity="0.7">
-    <!-- Top-left corner -->
-    <path d="M 15 15 L 50 15 L 50 50" opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1;1;1" dur="8s" begin="2s" fill="freeze"/>
-      <animate attributeName="stroke-dasharray" values="0,120; 70,50; 0,120" dur="3s" begin="4s" repeatCount="indefinite"/>
-    </path>
-    <!-- Top-right corner -->
-    <path d="M 385 15 L 350 15 L 350 50" opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1;1;1" dur="8s" begin="2.5s" fill="freeze"/>
-      <animate attributeName="stroke-dasharray" values="0,120; 70,50; 0,120" dur="3s" begin="4.5s" repeatCount="indefinite"/>
-    </path>
-    <!-- Bottom-left corner -->
-    <path d="M 15 385 L 50 385 L 50 350" opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1;1;1" dur="8s" begin="3s" fill="freeze"/>
-      <animate attributeName="stroke-dasharray" values="0,120; 70,50; 0,120" dur="3s" begin="5s" repeatCount="indefinite"/>
-    </path>
-    <!-- Bottom-right corner -->
-    <path d="M 385 385 L 350 385 L 350 350" opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1;1;1" dur="8s" begin="3.5s" fill="freeze"/>
-      <animate attributeName="stroke-dasharray" values="0,120; 70,50; 0,120" dur="3s" begin="5.5s" repeatCount="indefinite"/>
-    </path>
-  </g>
-  
-  <!-- Company watermark at bottom with updated messaging -->
-  <g transform="translate(200, 385)" opacity="0">
-    <animate attributeName="opacity" values="0;0;0;0;0.8;0.8" dur="8s" begin="6s" fill="freeze"/>
-    
-    <text x="0" y="0" text-anchor="middle" 
-          font-family="Arial, Helvetica, sans-serif" 
-          font-size="9" 
-          font-weight="300"
-          fill="#6c5ce7" 
-          letter-spacing="2px">
-      © 2024 NAYVID • AI-Powered Innovation
-    </text>
-  </g>
-  
-  <!-- Dynamic energy waves -->
-  <g opacity="0.3">
-    <circle cx="200" cy="200" r="50" fill="none" stroke="#513ee9" stroke-width="1" opacity="0">
-      <animate attributeName="r" values="50;150;250" dur="3s" begin="5s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;0.5;0" dur="3s" begin="5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="200" cy="200" r="80" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0">
-      <animate attributeName="r" values="80;180;280" dur="3.5s" begin="5.5s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;0.4;0" dur="3.5s" begin="5.5s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-  
-  <!-- Minimum display time controller - ensures splash shows for at least 2+ seconds total -->
-  <rect x="0" y="0" width="400" height="400" fill="transparent" opacity="1">
-    <animate attributeName="opacity" values="1;1;1;1;1;0" dur="8s" fill="freeze"/>
-  </rect>
 </svg>
